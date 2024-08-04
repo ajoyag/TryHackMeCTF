@@ -14,9 +14,9 @@ Based on the Mr. Robot show, can you root this box?
 ## Steps To Solve The Challenge
 ### 1. Reconnaissance
 ### Intial Scan
-command: nmap 10.10.197.100
-Findings
+command: `nmap 10.10.197.100`
 
+**Findings**
 ```
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-05 00:44 IST
 Nmap scan report for 10.10.197.100
