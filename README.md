@@ -1,24 +1,15 @@
-# TryHackMeCTF
----
+## 🕵️‍♂️ TryHackMeCTF
 
-### Description for GitHub Repository
-
----
-
-## 🕵️‍♂️ TryHackMe CTF Solutions
-
-Welcome to the **TryHackMe CTF Solutions** repository, your ultimate resource for navigating the world of Capture The Flag (CTF) challenges on TryHackMe! Dive into the art of hacking with detailed write-ups, insightful solutions, and comprehensive guides for various challenges.
+Welcome to the **TryHackMeCTF** repository, your ultimate resource for navigating the world of Capture The Flag (CTF) challenges on TryHackMe! Dive into the art of hacking with detailed write-ups, insightful solutions, and comprehensive guides for various challenges.
 
 ### 📂 Repository Structure
 
-Our repository is meticulously organized to help you find solutions effortlessly:
+Our repository contains individual markdown files for each challenge, packed with detailed steps, code snippets, and insightful explanations. Here’s how it's organized:
 
-- **🔗 Web**: Unravel the mysteries of web-based challenges.
-- **🔐 Crypto**: Crack the codes in cryptography challenges.
-- **🕵️‍♀️ Forensics**: Dig deep into forensic investigations.
-- **💣 Pwn**: Master the craft of binary exploitation.
-
-Each category houses individual markdown files for each challenge, packed with detailed steps, code snippets, and insightful explanations.
+- **[Challenge-Name1.md](./Challenge-Name1.md)**: Brief description of Challenge-Name1.
+- **[Challenge-Name2.md](./Challenge-Name2.md)**: Brief description of Challenge-Name2.
+- **[Challenge-Name3.md](./Challenge-Name3.md)**: Brief description of Challenge-Name3.
+- ... (continue listing as needed)
 
 ### 📝 Write-Up Template
 
@@ -35,7 +26,7 @@ Every write-up is designed to enhance your learning experience and includes:
 
 ### 🚀 How to Navigate This Repository
 
-1. **Explore**: Browse through the categories to find the challenge you’re working on.
+1. **Explore**: Browse through the challenge files to find the one you’re working on.
 2. **Learn**: Absorb the detailed explanations and solutions provided.
 3. **Apply**: Use the knowledge to tackle similar challenges and enhance your skills.
 
