@@ -13,7 +13,7 @@ Based on the Mr. Robot show, can you root this box?
 
 ## Steps To Solve The Challenge
 ### 1. Reconnaissance
-### * Intial Scan
+### Intial Scan
 command:
 Findings
 
