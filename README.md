@@ -16,13 +16,12 @@ Our repository contains individual markdown files for each challenge, packed wit
 Every write-up is designed to enhance your learning experience and includes:
 
 1. **Challenge Title**: The captivating title of the challenge.
-2. **Category**: The domain of the challenge (e.g., Web, Crypto).
-3. **Difficulty**: The challenge's complexity (e.g., Easy, Medium, Hard).
-4. **Description**: A concise overview of the challenge scenario.
-5. **Solution**: A comprehensive step-by-step guide on solving the challenge, including tools, techniques, and code snippets.
-6. **Flag**: The triumphant flag in the format `FLAG{your_flag_here}`.
-7. **References**: A list of valuable resources and references used.
-8. **Additional Notes**: Extra insights, observations, and tips.
+2. **Difficulty**: The challenge's complexity (e.g., Easy, Medium, Hard).
+3. **Description**: A concise overview of the challenge scenario.
+4. **Solution**: A comprehensive step-by-step guide on solving the challenge, including tools, techniques, and code snippets.
+5. **Flag**: The triumphant flag in the format `FLAG{your_flag_here}`.
+6. **References**: A list of valuable resources and references used.
+7. **Additional Notes**: Extra insights, observations, and tips.
 
 ### 🚀 How to Navigate This Repository
 
@@ -41,7 +40,3 @@ Got a unique solution or an interesting challenge write-up? We’d love to see i
 ### 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-By presenting a lively and engaging description, you’ll attract more users to your repository and encourage them to contribute and learn together.
