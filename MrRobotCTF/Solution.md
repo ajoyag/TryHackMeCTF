@@ -1,3 +1,5 @@
+![MrRobotTryHackMe](https://github.com/user-attachments/assets/4fd191e7-f225-42eb-b88e-b5ce5d6c8ea9)
+
 ## Challenge Infomation
 Challenge Name: Mr Robot CTF 
 
