@@ -55,31 +55,7 @@ Found the key 1 of 3 after navigating inside `http://10.10.159.27/key-1-of-3.txt
 
 futher i took a look insdie `fsocity.dic` file and apperared to list of usernames
 
-```
-true
-false
-wikia
-from
-the
-now
-Wikia
-extensions
-scss
-window
-http
-var
-page
-Robot
-Elliot
-styles
-and
-document
-mrrobot
-com
-ago
-function
--MORE-
-```
+![fsocity dic](https://github.com/user-attachments/assets/843cf7b4-5ef6-4bb7-9297-a525ad4b6c66)
 
 **HTTP Service:** Used **gobuster** to find directories.
 
